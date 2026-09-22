@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>TQM Val</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  html, body { height: 100%; overflow: hidden; }
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at top, #87ceeb 0%, #d9f2ff 55%, #e8fbe0 100%);
+    font-family: -apple-system, "SF Pro Rounded", sans-serif;
+    touch-action: manipulation;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  .scene {
+    position: relative;
+    width: 320px;
+    height: 460px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .message {
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    text-align: center;
+    font-size: 34px;
+    font-weight: 800;
+    color: #e91e8c;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-15px) scale(0.8);
+    transition: opacity 0.8s ease, transform 0.8s cubic-bezier(.34,1.56,.64,1);
+    letter-spacing: 1px;
+    z-index: 2;
+  }
+  .message.show { opacity: 1; transform: translateY(0) scale(1); }
+  .stem {
+    width: 8px;
+    height: 150px;
+    background: linear-gradient(to bottom, #4caf50, #2e7d32);
+    border-radius: 4px;
+    margin-top: 230px;
+    z-index: 1;
+  }
+  .leaf {
+    position: absolute;
+    width: 40px;
+    height: 20px;
+    background: #43a047;
+    border-radius: 50% 0 50% 0;
+    top: 320px;
+    z-index: 1;
+  }
+  .leaf.left { left: 120px; transform: rotate(30deg); }
+  .leaf.right { right: 120px; transform: rotate(-30deg) scaleX(-1); }
+  .flower {
+    position: absolute;
+    top: 70px;
+    width: 220px;
+    height: 220px;
+    cursor: pointer;
+    transition: transform 0.4s ease;
+    z-index: 5;
+    touch-action: manipulation;
+  }
+  .petal {
+    position: absolute;
+    width: 80px;
+    height: 100px;
+    background: radial-gradient(circle at 30% 30%, #fff9c4, #fdd835 65%, #f9a825);
+    border-radius: 50% 50% 50% 50%;
+    top: 60px;
+    left: 70px;
+    transform-origin: 50% 100%;
+    transition: transform 0.6s cubic-bezier(.68,-0.55,.27,1.55), filter 0.3s;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1) inset;
+    pointer-events: none;
+  }
+  .center {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(circle, #8d6e2f, #6d4c1a);
+    border-radius: 50%;
+    top: 80px;
+    left: 80px;
+    z-index: 5;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.4);
+    pointer-events: none;
+  }
+  .flower.closed .petal { transform: scale(0.15) rotate(0deg) !important; filter: brightness(0.9); }
+  .flower.bloom .petal { filter: brightness(1.1); }
+  .hint {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+    color: #333;
+    font-size: 14px;
+    opacity: 0.75;
+  }
+  .petal-fall {
+    position: absolute;
+    width: 20px;
+    height: 24px;
+    background: #fdd835;
+    border-radius: 50% 50% 50% 50%;
+    pointer-events: none;
+    animation: fall 3s linear forwards;
+    opacity: 0.9;
+  }
+  .heart {
+    position: absolute;
+    font-size: 18px;
+    pointer-events: none;
+    animation: floatUp 1.8s ease-out forwards;
+  }
+  @keyframes fall { to { transform: translateY(300px) rotate(360deg); opacity: 0; } }
+  @keyframes floatUp { to { transform: translateY(-120px) scale(1.4); opacity: 0; } }
+</style>
+</head>
+<body>
+<div class="scene">
+  <div class="message" id="message">TQM Val 💛</div>
+  <div class="flower closed" id="flower"></div>
+  <div class="leaf left"></div>
+  <div class="leaf right"></div>
+  <div class="stem"></div>
+  <div class="hint">Toca la flor para abrirla • mantén presionado para girarla</div>
+</div>
+
+<script>
+const flower = document.getElementById('flower');
+const message = document.getElementById('message');
+const scene = document.querySelector('.scene');
+const NUM_PETALS = 8;
+const petalEls = [];
+
+for (let i = 0; i < NUM_PETALS; i++) {
+  const petal = document.createElement('div');
+  petal.className = 'petal';
+  const angle = (360 / NUM_PETALS) * i;
+  petal.style.transform = `rotate(${angle}deg)`;
+  petal.dataset.angle = angle;
+  flower.appendChild(petal);
+  petalEls.push(petal);
+}
+const center = document.createElement('div');
+center.className = 'center';
+flower.appendChild(center);
+
+let bloomed = false;
+function toggleBloom() {
+  bloomed = !bloomed;
+  flower.classList.toggle('closed', !bloomed);
+  flower.classList.toggle('bloom', bloomed);
+  petalEls.forEach((p) => {
+    const angle = p.dataset.angle;
+    p.style.transform = bloomed ? `rotate(${angle}deg) scale(1.05)` : `scale(0.15) rotate(0deg)`;
+  });
+  message.classList.toggle('show', bloomed);
+  if (bloomed) { spawnFallingPetals(); spawnHearts(); }
+}
+
+function spawnFallingPetals() {
+  for (let i = 0; i < 6; i++) {
+    setTimeout(() => {
+      const fp = document.createElement('div');
+      fp.className = 'petal-fall';
+      fp.style.left = (100 + Math.random() * 100) + 'px';
+      fp.style.top = '130px';
+      scene.appendChild(fp);
+      setTimeout(() => fp.remove(), 3000);
+    }, i * 200);
+  }
+}
+
+function spawnHearts() {
+  for (let i = 0; i < 5; i++) {
+    setTimeout(() => {
+      const h = document.createElement('div');
+      h.className = 'heart';
+      h.textContent = '💛';
+      h.style.left = (120 + Math.random() * 80) + 'px';
+      h.style.top = '150px';
+      scene.appendChild(h);
+      setTimeout(() => h.remove(), 1800);
+    }, i * 150);
+  }
+}
+
+let pressTimer = null;
+let longPressTriggered = false;
+let startX = 0, startY = 0;
+
+flower.addEventListener('pointerdown', (e) => {
+  longPressTriggered = false;
+  startX = e.clientX;
+  startY = e.clientY;
+  pressTimer = setTimeout(() => {
+    longPressTriggered = true;
+    flower.style.transition = 'transform 2s linear';
+    flower.style.transform = 'rotate(360deg)';
+    setTimeout(() => {
+      flower.style.transition = 'transform 0.4s ease';
+      flower.style.transform = 'rotate(0deg)';
+    }, 2000);
+  }, 500);
+});
+
+flower.addEventListener('pointerup', (e) => {
+  clearTimeout(pressTimer);
+  const dx = Math.abs(e.clientX - startX);
+  const dy = Math.abs(e.clientY - startY);
+  if (!longPressTriggered && dx < 10 && dy < 10) {
+    toggleBloom();
+  }
+});
+
+flower.addEventListener('pointercancel', () => clearTimeout(pressTimer));
+flower.addEventListener('pointerleave', () => clearTimeout(pressTimer));
+</script>
+</body>
+</html>
