@@ -3,246 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<title>TQM Val</title>
+<title>TQM Val 💛</title>
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-  html, body { height: 100%; overflow: hidden; }
-  body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: radial-gradient(circle at top, #87ceeb 0%, #d9f2ff 55%, #e8fbe0 100%);
-    font-family: -apple-system, "SF Pro Rounded", sans-serif;
-    touch-action: manipulation;
-    -webkit-user-select: none;
-    user-select: none;
-  }
-  .scene {
-    position: relative;
-    width: 320px;
-    height: 460px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .message {
-    position: absolute;
-    top: 0px;
-    width: 100%;
-    text-align: center;
-    font-size: 34px;
-    font-weight: 800;
-    color: #e91e8c;
-    text-shadow: 0 2px 6px rgba(0,0,0,0.15);
-    opacity: 0;
-    pointer-events: none;
-    transform: translateY(-15px) scale(0.8);
-    transition: opacity 0.8s ease, transform 0.8s cubic-bezier(.34,1.56,.64,1);
-    letter-spacing: 1px;
-    z-index: 2;
-  }
-  .message.show { opacity: 1; transform: translateY(0) scale(1); }
-  .glow {
-    position: absolute;
-    top: 60px;
-    width: 240px;
-    height: 240px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(255,235,130,0.55) 0%, rgba(255,235,130,0) 70%);
-    opacity: 0;
-    transition: opacity 0.8s ease;
-    z-index: 0;
-  }
-  .glow.show { opacity: 1; }
-  .stem {
-    width: 8px;
-    height: 150px;
-    background: linear-gradient(to bottom, #4caf50, #2e7d32);
-    border-radius: 4px;
-    margin-top: 230px;
-    z-index: 1;
-  }
-  .leaf {
-    position: absolute;
-    width: 40px;
-    height: 20px;
-    background: #43a047;
-    border-radius: 50% 0 50% 0;
-    top: 320px;
-    z-index: 1;
-  }
-  .leaf.left { left: 120px; transform: rotate(30deg); }
-  .leaf.right { right: 120px; transform: rotate(-30deg) scaleX(-1); }
-  .flower {
-    position: absolute;
-    top: 70px;
-    width: 220px;
-    height: 220px;
-    cursor: pointer;
-    transition: transform 0.4s ease;
-    z-index: 5;
-    touch-action: manipulation;
-    filter: drop-shadow(0 6px 10px rgba(0,0,0,0.12));
-  }
-  .petal {
-    position: absolute;
-    width: 78px;
-    height: 100px;
-    background: radial-gradient(circle at 32% 28%, #fffde7, #fdd835 55%, #f9a825 100%);
-    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-    top: 10px;
-    left: 71px;
-    transform-origin: 50% 100%;
-    transition: transform 0.6s cubic-bezier(.68,-0.55,.27,1.55), filter 0.3s;
-    box-shadow: inset 0 -6px 10px rgba(230,140,0,0.25), inset 0 4px 8px rgba(255,255,255,0.5);
-    pointer-events: none;
-  }
-  .center {
-    position: absolute;
-    width: 58px;
-    height: 58px;
-    background: radial-gradient(circle at 35% 30%, #a9762f, #6d4c1a 75%);
-    border-radius: 50%;
-    top: 81px;
-    left: 81px;
-    z-index: 5;
-    box-shadow: inset 0 0 10px rgba(0,0,0,0.45), 0 2px 4px rgba(0,0,0,0.2);
-    pointer-events: none;
-  }
-  .flower.closed .petal { transform: scale(0.15) rotate(0deg) !important; filter: brightness(0.9); }
-  .flower.bloom .petal { filter: brightness(1.05); }
-  .hint {
-    position: absolute;
-    bottom: 10px;
-    width: 100%;
-    text-align: center;
-    color: #333;
-    font-size: 14px;
-    opacity: 0.75;
-  }
-  .petal-fall {
-    position: absolute;
-    width: 20px;
-    height: 24px;
-    background: #fdd835;
-    border-radius: 50% 50% 50% 50%;
-    pointer-events: none;
-    animation: fall 3s linear forwards;
-    opacity: 0.9;
-  }
-  .heart {
-    position: absolute;
-    font-size: 18px;
-    pointer-events: none;
-    animation: floatUp 1.8s ease-out forwards;
-  }
-  @keyframes fall { to { transform: translateY(300px) rotate(360deg); opacity: 0; } }
-  @keyframes floatUp { to { transform: translateY(-120px) scale(1.4); opacity: 0; } }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}html,body{width:100%;height:100%;overflow:hidden}body{display:flex;align-items:center;justify-content:center;background:radial-gradient(ellipse at 50% 32%,rgba(128,75,20,.32),transparent 32%),radial-gradient(ellipse at 50% 15%,#343146 0%,#171725 48%,#07070d 100%);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Rounded",sans-serif;color:white;touch-action:manipulation;-webkit-user-select:none;user-select:none}.spotlight{position:fixed;top:-25vh;left:50%;width:min(145vw,760px);height:min(145vw,760px);transform:translateX(-50%);border-radius:50%;background:radial-gradient(circle,rgba(255,212,91,.20) 0%,rgba(255,189,55,.07) 35%,transparent 68%);pointer-events:none}.sparkle{position:fixed;width:3px;height:3px;border-radius:50%;background:#fff9d9;box-shadow:0 0 7px #fff1a8;animation:twinkle 2.8s ease-in-out infinite;pointer-events:none}@keyframes twinkle{0%,100%{opacity:.15;transform:scale(.7)}50%{opacity:.95;transform:scale(1.65)}}.scene{position:relative;width:min(100vw,470px);height:min(100vh,620px);min-height:500px}.title{position:absolute;top:2.5%;width:100%;text-align:center;font-weight:900;font-size:clamp(30px,8.5vw,42px);letter-spacing:1px;color:#ffd34e;text-shadow:0 0 12px rgba(255,200,55,.7),0 3px 8px rgba(0,0,0,.65);opacity:0;transform:translateY(-12px) scale(.85);transition:opacity .7s ease,transform .7s cubic-bezier(.34,1.56,.64,1);z-index:12}.title.show{opacity:1;transform:translateY(0) scale(1)}.song-credit{position:absolute;top:11%;width:100%;text-align:center;color:#f7d47a;font-size:12px;letter-spacing:.4px;opacity:0;transition:opacity .7s ease .3s;z-index:12}.song-credit.show{opacity:.9}.card{position:absolute;width:clamp(92px,25vw,116px);height:clamp(125px,33vw,153px);padding:5px 5px 22px;border-radius:5px;background:#f8f5eb;box-shadow:0 10px 22px rgba(0,0,0,.58),0 0 0 1px rgba(255,255,255,.22) inset;opacity:0;overflow:hidden;pointer-events:none;z-index:4;transition:opacity .8s ease,transform .8s cubic-bezier(.34,1.56,.64,1)}.card img{width:100%;height:100%;display:block;object-fit:cover;object-position:center center;border-radius:2px;background:#1d1d25}.card-label{position:absolute;left:2px;right:2px;bottom:4px;text-align:center;font-size:clamp(8px,2.5vw,10px);font-weight:800;line-height:1.05;color:#2f2b2a;white-space:nowrap}.remember{top:17%;left:4%;transform:translate(-25px,-15px) scale(.72) rotate(-12deg)}.mirror{top:17%;right:4%;transform:translate(25px,-15px) scale(.72) rotate(12deg)}.blackwhite{bottom:16%;left:4%;transform:translate(-25px,15px) scale(.72) rotate(10deg)}.rockworld{bottom:16%;right:4%;transform:translate(25px,15px) scale(.72) rotate(-10deg)}.card.show.remember{opacity:1;transform:translate(0,0) scale(1) rotate(-6deg)}.card.show.mirror{opacity:1;transform:translate(0,0) scale(1) rotate(6deg)}.card.show.blackwhite{opacity:1;transform:translate(0,0) scale(1) rotate(5deg)}.card.show.rockworld{opacity:1;transform:translate(0,0) scale(1) rotate(-5deg)}.flower-glow{position:absolute;top:27%;left:50%;width:265px;height:265px;transform:translateX(-50%);border-radius:50%;background:radial-gradient(circle,rgba(255,224,100,.5),rgba(255,208,60,.12) 47%,transparent 72%);opacity:0;transition:opacity .8s ease;z-index:2;pointer-events:none}.flower-glow.show{opacity:1}.flower{position:absolute;top:31%;left:50%;width:210px;height:210px;margin-left:-105px;z-index:8;cursor:pointer;touch-action:manipulation;filter:drop-shadow(0 10px 16px rgba(0,0,0,.52))}.petal{position:absolute;width:75px;height:96px;left:67.5px;top:9px;transform-origin:50% 100%;border-radius:52% 52% 48% 48% / 62% 62% 38% 38%;background:radial-gradient(circle at 32% 27%,#fffde8,#ffe65a 54%,#f4af1c 100%);box-shadow:inset 0 -7px 11px rgba(224,139,0,.27),inset 0 4px 8px rgba(255,255,255,.55);pointer-events:none;transition:transform .62s cubic-bezier(.68,-.55,.27,1.55),filter .3s}.center{position:absolute;width:57px;height:57px;top:77px;left:77px;z-index:3;border-radius:50%;background:radial-gradient(circle at 35% 30%,#b78032,#755018 75%);box-shadow:inset 0 0 11px rgba(0,0,0,.48),0 2px 5px rgba(0,0,0,.28);pointer-events:none}.flower.closed .petal{transform:scale(.15) rotate(0deg)!important;filter:brightness(.88)}.flower.bloom .petal{filter:brightness(1.07)}.stem{position:absolute;width:8px;height:127px;top:59%;left:50%;margin-left:-4px;z-index:3;border-radius:5px;background:linear-gradient(to bottom,#53c05c,#247b31)}.leaf{position:absolute;top:65%;width:44px;height:22px;z-index:3;background:linear-gradient(135deg,#61c85d,#278231);border-radius:50% 0 50% 0}.leaf-l{left:calc(50% - 43px);transform:rotate(31deg)}.leaf-r{right:calc(50% - 43px);transform:rotate(-31deg) scaleX(-1)}.play-song{position:absolute;bottom:6.5%;left:50%;transform:translateX(-50%) translateY(12px) scale(.9);border:0;border-radius:999px;padding:11px 18px;background:linear-gradient(135deg,#f4bd35,#d68b18);color:#1c1306;font-size:13px;font-weight:800;box-shadow:0 5px 14px rgba(0,0,0,.42),inset 0 1px 1px rgba(255,255,255,.5);opacity:0;pointer-events:none;transition:opacity .5s ease .45s,transform .5s cubic-bezier(.34,1.56,.64,1) .45s;z-index:15;white-space:nowrap}.play-song.show{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0) scale(1)}.hint{position:absolute;width:100%;bottom:1.5%;text-align:center;color:rgba(240,240,245,.73);font-size:13px;z-index:15}.heart{position:absolute;font-size:18px;pointer-events:none;animation:floatUp 1.8s ease-out forwards;z-index:16}.petal-fall{position:absolute;width:19px;height:23px;background:#fbd536;border-radius:50%;pointer-events:none;animation:fall 3s linear forwards;z-index:16}@keyframes floatUp{to{transform:translateY(-120px) scale(1.35);opacity:0}}@keyframes fall{to{transform:translateY(310px) rotate(390deg);opacity:0}}
 </style>
 </head>
 <body>
-<div class="scene">
-  <div class="message" id="message">TQM Val 💛</div>
-  <div class="glow" id="glow"></div>
-  <div class="flower closed" id="flower"></div>
-  <div class="leaf left"></div>
-  <div class="leaf right"></div>
-  <div class="stem"></div>
-  <div class="hint">Toca la flor para abrirla • mantén presionado para girarla</div>
+<div class="spotlight"></div>
+<div class="scene" id="scene">
+<div class="title" id="title">TQM Val 💛</div><div class="song-credit" id="songCredit">♪ Remember the Time — Michael Jackson</div>
+<div class="card remember" id="cardRemember"><img src="https://d2u1z1lopyfwlx.cloudfront.net/thumbnails/649c681e-520c-50ca-95e8-84bc09658489/0e78c087-55ec-529d-a657-81e58871b86b.jpg" alt="Michael Jackson Remember the Time"><div class="card-label">Remember the Time</div></div>
+<div class="card mirror" id="cardMirror"><img src="https://d2u1z1lopyfwlx.cloudfront.net/thumbnails/20ec4274-c85a-54ae-9d0c-a1349073d1d4/30888916-ce83-5fca-9e27-4ad7a2eab011.jpg" alt="Michael Jackson Man in the Mirror"><div class="card-label">Man in the Mirror</div></div>
+<div class="card blackwhite" id="cardBlackWhite"><img src="https://st.perplexity.ai/estatic/0b226c450798410ac541646c86ec31afd840e5beab817a5d84fa821e7db61981ec84c3b4a3f072a7a2e1899c9fb06c6e3bbd736780645233d48fbfce155756ac35f3395fde9a9d138d2d03741ddd2439dd969bb139cd6a27300f94558856cab6f0348b864e47fd5c892cf4ffc0284385" alt="Michael Jackson Black or White"><div class="card-label">Black or White</div></div>
+<div class="card rockworld" id="cardRockWorld"><img src="https://st.perplexity.ai/estatic/0b226c450798410ac541646c86ec31afd840e5beab817a5d84fa821e7db61981ec84c3b4a3f072a7a2e1899c9fb06c6e06f4d752b9a426cfee6c8aa147c698369bc2ae7b69e8b52a57c54e06519464a767cdf824811d68e3e5564829852b3e4dcdd1e5506280beac36b44562d960cfa3" alt="Michael Jackson You Rock My World"><div class="card-label">You Rock My World</div></div>
+<div class="flower-glow" id="flowerGlow"></div><div class="flower closed" id="flower"></div><div class="leaf leaf-l"></div><div class="leaf leaf-r"></div><div class="stem"></div>
+<button class="play-song" id="playSong" type="button">▶ Reproducir Remember the Time</button><div class="hint">Toca la flor para abrirla</div>
 </div>
-
 <script>
-const flower = document.getElementById('flower');
-const message = document.getElementById('message');
-const glow = document.getElementById('glow');
-const scene = document.querySelector('.scene');
-const NUM_PETALS = 8;
-const petalEls = [];
-
-for (let i = 0; i < NUM_PETALS; i++) {
-  const petal = document.createElement('div');
-  petal.className = 'petal';
-  const angle = (360 / NUM_PETALS) * i;
-  petal.style.transform = `rotate(${angle}deg)`;
-  petal.dataset.angle = angle;
-  flower.appendChild(petal);
-  petalEls.push(petal);
-}
-const center = document.createElement('div');
-center.className = 'center';
-flower.appendChild(center);
-
-let bloomed = false;
-function toggleBloom() {
-  bloomed = !bloomed;
-  flower.classList.toggle('closed', !bloomed);
-  flower.classList.toggle('bloom', bloomed);
-  petalEls.forEach((p) => {
-    const angle = p.dataset.angle;
-    p.style.transform = bloomed ? `rotate(${angle}deg) scale(1.05)` : `scale(0.15) rotate(0deg)`;
-  });
-  message.classList.toggle('show', bloomed);
-  glow.classList.toggle('show', bloomed);
-  if (bloomed) { spawnFallingPetals(); spawnHearts(); }
-}
-
-function spawnFallingPetals() {
-  for (let i = 0; i < 6; i++) {
-    setTimeout(() => {
-      const fp = document.createElement('div');
-      fp.className = 'petal-fall';
-      fp.style.left = (100 + Math.random() * 100) + 'px';
-      fp.style.top = '130px';
-      scene.appendChild(fp);
-      setTimeout(() => fp.remove(), 3000);
-    }, i * 200);
-  }
-}
-
-function spawnHearts() {
-  for (let i = 0; i < 5; i++) {
-    setTimeout(() => {
-      const h = document.createElement('div');
-      h.className = 'heart';
-      h.textContent = '💛';
-      h.style.left = (120 + Math.random() * 80) + 'px';
-      h.style.top = '150px';
-      scene.appendChild(h);
-      setTimeout(() => h.remove(), 1800);
-    }, i * 150);
-  }
-}
-
-let pressTimer = null;
-let longPressTriggered = false;
-let startX = 0, startY = 0;
-
-flower.addEventListener('pointerdown', (e) => {
-  longPressTriggered = false;
-  startX = e.clientX;
-  startY = e.clientY;
-  pressTimer = setTimeout(() => {
-    longPressTriggered = true;
-    flower.style.transition = 'transform 2s linear';
-    flower.style.transform = 'rotate(360deg)';
-    setTimeout(() => {
-      flower.style.transition = 'transform 0.4s ease';
-      flower.style.transform = 'rotate(0deg)';
-    }, 2000);
-  }, 500);
-});
-
-flower.addEventListener('pointerup', (e) => {
-  clearTimeout(pressTimer);
-  const dx = Math.abs(e.clientX - startX);
-  const dy = Math.abs(e.clientY - startY);
-  if (!longPressTriggered && dx < 10 && dy < 10) {
-    toggleBloom();
-  }
-});
-
-flower.addEventListener('pointercancel', () => clearTimeout(pressTimer));
-flower.addEventListener('pointerleave', () => clearTimeout(pressTimer));
+const scene=document.getElementById('scene'),flower=document.getElementById('flower'),title=document.getElementById('title'),songCredit=document.getElementById('songCredit'),flowerGlow=document.getElementById('flowerGlow'),playSong=document.getElementById('playSong'),cards=['cardRemember','cardMirror','cardBlackWhite','cardRockWorld'].map(id=>document.getElementById(id)),petals=[];let bloomed=false;
+for(let i=0;i<38;i++){const d=document.createElement('div');d.className='sparkle';d.style.left=Math.random()*100+'vw';d.style.top=Math.random()*100+'vh';d.style.animationDelay=Math.random()*2.8+'s';document.body.appendChild(d)}
+for(let i=0;i<8;i++){const p=document.createElement('div');p.className='petal';const a=45*i;p.dataset.angle=a;p.style.transform=`rotate(${a}deg)`;flower.appendChild(p);petals.push(p)}const center=document.createElement('div');center.className='center';flower.appendChild(center);
+function effects(){for(let i=0;i<7;i++)setTimeout(()=>{const p=document.createElement('div');p.className='petal-fall';p.style.left=scene.clientWidth/2-25+Math.random()*50+'px';p.style.top='210px';scene.appendChild(p);setTimeout(()=>p.remove(),3000)},i*160);for(let i=0;i<6;i++)setTimeout(()=>{const h=document.createElement('div');h.className='heart';h.textContent='💛';h.style.left=scene.clientWidth/2-28+Math.random()*56+'px';h.style.top='235px';scene.appendChild(h);setTimeout(()=>h.remove(),1800)},i*130)}
+function toggle(){bloomed=!bloomed;flower.classList.toggle('closed',!bloomed);flower.classList.toggle('bloom',bloomed);petals.forEach(p=>p.style.transform=bloomed?`rotate(${p.dataset.angle}deg) scale(1.05)`:'scale(.15) rotate(0deg)');title.classList.toggle('show',bloomed);songCredit.classList.toggle('show',bloomed);flowerGlow.classList.toggle('show',bloomed);cards.forEach(c=>c.classList.toggle('show',bloomed));playSong.classList.toggle('show',bloomed);if(bloomed)effects()}
+flower.addEventListener('pointerup',e=>{e.preventDefault();toggle()});playSong.addEventListener('click',()=>window.open('https://youtu.be/LeiFF0gvqcc?si=NrwGQ6vHSbFdwVs8&t=171','_blank','noopener'));
 </script>
 </body>
 </html>
