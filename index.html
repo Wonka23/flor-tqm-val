@@ -42,6 +42,18 @@
     z-index: 2;
   }
   .message.show { opacity: 1; transform: translateY(0) scale(1); }
+  .glow {
+    position: absolute;
+    top: 60px;
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,235,130,0.55) 0%, rgba(255,235,130,0) 70%);
+    opacity: 0;
+    transition: opacity 0.8s ease;
+    z-index: 0;
+  }
+  .glow.show { opacity: 1; }
   .stem {
     width: 8px;
     height: 150px;
@@ -70,34 +82,35 @@
     transition: transform 0.4s ease;
     z-index: 5;
     touch-action: manipulation;
+    filter: drop-shadow(0 6px 10px rgba(0,0,0,0.12));
   }
   .petal {
     position: absolute;
-    width: 80px;
+    width: 78px;
     height: 100px;
-    background: radial-gradient(circle at 30% 30%, #fff9c4, #fdd835 65%, #f9a825);
-    border-radius: 50% 50% 50% 50%;
-    top: 60px;
-    left: 70px;
+    background: radial-gradient(circle at 32% 28%, #fffde7, #fdd835 55%, #f9a825 100%);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    top: 10px;
+    left: 71px;
     transform-origin: 50% 100%;
     transition: transform 0.6s cubic-bezier(.68,-0.55,.27,1.55), filter 0.3s;
-    box-shadow: 0 0 8px rgba(0,0,0,0.1) inset;
+    box-shadow: inset 0 -6px 10px rgba(230,140,0,0.25), inset 0 4px 8px rgba(255,255,255,0.5);
     pointer-events: none;
   }
   .center {
     position: absolute;
-    width: 60px;
-    height: 60px;
-    background: radial-gradient(circle, #8d6e2f, #6d4c1a);
+    width: 58px;
+    height: 58px;
+    background: radial-gradient(circle at 35% 30%, #a9762f, #6d4c1a 75%);
     border-radius: 50%;
-    top: 80px;
-    left: 80px;
+    top: 81px;
+    left: 81px;
     z-index: 5;
-    box-shadow: inset 0 0 10px rgba(0,0,0,0.4);
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.45), 0 2px 4px rgba(0,0,0,0.2);
     pointer-events: none;
   }
   .flower.closed .petal { transform: scale(0.15) rotate(0deg) !important; filter: brightness(0.9); }
-  .flower.bloom .petal { filter: brightness(1.1); }
+  .flower.bloom .petal { filter: brightness(1.05); }
   .hint {
     position: absolute;
     bottom: 10px;
@@ -130,6 +143,7 @@
 <body>
 <div class="scene">
   <div class="message" id="message">TQM Val 💛</div>
+  <div class="glow" id="glow"></div>
   <div class="flower closed" id="flower"></div>
   <div class="leaf left"></div>
   <div class="leaf right"></div>
@@ -140,6 +154,7 @@
 <script>
 const flower = document.getElementById('flower');
 const message = document.getElementById('message');
+const glow = document.getElementById('glow');
 const scene = document.querySelector('.scene');
 const NUM_PETALS = 8;
 const petalEls = [];
@@ -167,6 +182,7 @@ function toggleBloom() {
     p.style.transform = bloomed ? `rotate(${angle}deg) scale(1.05)` : `scale(0.15) rotate(0deg)`;
   });
   message.classList.toggle('show', bloomed);
+  glow.classList.toggle('show', bloomed);
   if (bloomed) { spawnFallingPetals(); spawnHearts(); }
 }
 
